@@ -5,7 +5,7 @@ require '../config/db.php';
 function base_url() {
     $host = $_SERVER['HTTP_HOST'];
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
-    return $protocol . "://" . $host . "/sticker-api/";
+    return $protocol . "://" . $host . "/";
 }
 
 $base = base_url();
@@ -25,8 +25,7 @@ $result = $stmt->get_result();
 
 $stickers = [];
 while ($row = $result->fetch_assoc()) {
- 
-    $row['image'] = $base . "uploads/" . $row['image'];
+    $row['image'] = $base . "uploads/stickers/" . $row['image'];
     $stickers[] = $row;
 }
 

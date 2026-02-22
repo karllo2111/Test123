@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 $host = "localhost";
 $user = "root";
-$pass = "root";
+$pass = "";
 $db   = "sticker_db";
 
 $conn = new mysqli($host, $user, $pass, $db);
