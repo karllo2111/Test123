@@ -73,7 +73,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="12dp"
-            android:text="Already have an acc? Log In"
+            android:text="Don't have an account? Register here!"
             android:textColor="#193150" />
 
         <Button

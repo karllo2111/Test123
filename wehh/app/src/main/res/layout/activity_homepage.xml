@@ -226,19 +226,19 @@
 
                 <ImageView
                     android:id="@+id/imgRec2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/image_removebg_preview_6_"/>
+                    android:layout_width="124dp"
+                    android:layout_height="109dp"
+                    android:src="@drawable/image_removebg_preview_6_" />
 
                 <TextView
                     android:id="@+id/tvRecName2"
-                    android:layout_width="142dp"
-                    android:layout_height="33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/aoboshi_one"
-                    android:text="Loading..."
-                    android:textSize="13sp"
                     android:maxLines="2"
-                    android:ellipsize="end" />
+                    android:text="Loading..."
+                    android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

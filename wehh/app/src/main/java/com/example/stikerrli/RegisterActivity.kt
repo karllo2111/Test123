@@ -1,15 +1,9 @@
 package com.example.stikerrli
 
-import Network.AuthResponse
-import Network.RegisterRequest
-import Network.RetrofitClient
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.stikerrli.databinding.ActivityRegisterBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -37,21 +31,30 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerUser(user: String, pass: String) {
-        val request = RegisterRequest(name = user, password = pass)
-        RetrofitClient.instance.register(request).enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                if (response.isSuccessful && response.body()?.status == "success") {
-                    Toast.makeText(this@RegisterActivity, "Registration successful!", Toast.LENGTH_LONG).show()
-                    finish() // Kembali ke halaman login setelah berhasil
-                } else {
-                    val errorMessage = response.body()?.message ?: "Unknown error"
-                    Toast.makeText(this@RegisterActivity, "Registration failed: $errorMessage", Toast.LENGTH_LONG).show()
+
+        Thread {
+            try {
+                val params = HashMap<String, String>()
+                params["name"] = user
+                params["password"] = pass
+
+                val rh = RequestHandler()
+                val result = rh.sendPostRequest(Konfigurasi.URL_REGISTER, params)
+
+                runOnUiThread {
+                    if (result.contains("success")) {
+                        Toast.makeText(this, "Registration successful!", Toast.LENGTH_LONG).show()
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Registration failed!", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+            } catch (e: Exception) {
+                runOnUiThread {
+                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
-
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Toast.makeText(this@RegisterActivity, "Network Error: ${t.message}", Toast.LENGTH_LONG).show()
-            }
-        })
+        }.start()
     }
 }

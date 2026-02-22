@@ -68,10 +68,10 @@
 
         <TextView
             android:id="@+id/TextRegis"
-            android:layout_width="217dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Already have an acc? Log In"
+            android:text="Already have an account? Login here!"
             android:textColorLink="#193150"
             android:textSize="15sp" />
 

@@ -66,28 +66,28 @@ class HomePage : AppCompatActivity() {
     }
 
     private fun displayStickers(stickers: JSONArray) {
-        // Top Stickers - slot 1
+
         if (stickers.length() > 0) {
             val s = stickers.getJSONObject(0)
             binding.tvTopName1.text = s.getString("name")
             Glide.with(this).load(s.getString("image")).into(binding.imgTop1)
             binding.cardTop1.setOnClickListener { openStickerPopup(s) }
         }
-        // Top Stickers - slot 2
+
         if (stickers.length() > 1) {
             val s = stickers.getJSONObject(1)
             binding.tvTopName2.text = s.getString("name")
             Glide.with(this).load(s.getString("image")).into(binding.imgTop2)
             binding.cardTop2.setOnClickListener { openStickerPopup(s) }
         }
-        // Recommended - slot 1
+
         if (stickers.length() > 2) {
             val s = stickers.getJSONObject(2)
             binding.tvRecName1.text = s.getString("name")
             Glide.with(this).load(s.getString("image")).into(binding.imgRec1)
             binding.cardRec1.setOnClickListener { openStickerPopup(s) }
         }
-        // Recommended - slot 2
+
         if (stickers.length() > 3) {
             val s = stickers.getJSONObject(3)
             binding.tvRecName2.text = s.getString("name")
